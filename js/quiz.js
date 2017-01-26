@@ -81,7 +81,7 @@ var opt3 = document.getElementById('opt3');
 var opt4 = document.getElementById('opt4');
 var nextButton =document.getElementById('nextButton');
 var resultCont = document.getElementById('result');
-var a;
+
 function loadQuestion (questionIndex){
 	var q = questions[questionIndex];
 	questionEl.textContent = (questionIndex + 1) + '. ' + q.question;
@@ -108,10 +108,14 @@ function loadNextQuiz (){
 	if(currentQuestion == totQuestions){
 		container.style.display = 'none';
 		resultCont.style.display = '';
-		resultCont.textContent = 'Your Score: ' + a;
+		if(score >= 60){
+			resultCont.innerHTML = 'Your Score: ' + score + '%' + '<br> <p style="color:green">CONGRATULATION You Have Passed</p>';
+		}
+		else{
+			resultCont.innerHTML = 'Your Score ' + score + '%' + '<br> <p style="color:red">Sorry You Have Failed</p>';
+		}
 		return;
 	}
-	a = (score / totQuestions) * 100;
 	loadQuestion(currentQuestion);
 }
 loadQuestion(currentQuestion);
